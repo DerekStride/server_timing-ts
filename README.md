@@ -1,34 +1,30 @@
-# ServerTiming::Ts
+# ServerTiming
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/server_timing/ts`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Ruby wrapper for [tree-sitter-server_timing](https://github.com/DerekStride/tree-sitter-server_timing), a parser for the
+[Server-Timing](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing) header.
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+bin/setup
+bin/console
+```
 
-## Development
+The setup script will run run `bundle install` then compile the
+[tree-sitter-server_timing](https://github.com/DerekStride/tree-sitter-server_timing) parser and place the `.dylib` /
+`.so` file in the `treesitter/` directory.
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+The console script will load the gem and the parser and drop you into an [IRB](https://github.com/ruby/irb) session.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Example
 
-## Contributing
+```ruby
+include ServerTiming
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/server_timing-ts. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/server_timing-ts/blob/main/CODE_OF_CONDUCT.md).
+header = get_header("https://derek.stride.host")
+tree = parse(header)
+timings = extract_timings(tree)
+```
 
 ## License
 
@@ -36,4 +32,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the ServerTiming::Ts project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/server_timing-ts/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the ServerTiming project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/DerekStride/server_timing-ts/blob/main/CODE_OF_CONDUCT.md).

@@ -16,8 +16,8 @@ include ServerTiming
 puts <<~MOTD
   Welcome to the ServerTiming console!
   Available Methods:
-      * parse(string)
       * get_header(url)
+      * parse(string)
       * extract(tree)
 
   Available ivars:

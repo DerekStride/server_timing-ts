@@ -2,10 +2,31 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
+
+require "debug"
+require "net/http"
 require "server_timing"
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+include ServerTiming
+
+@header = get_header("https://derek.stride.host")
+@tree = parse(@header)
+
+puts <<~MOTD
+  Welcome to the ServerTiming console!
+  Available Methods:
+      * parse(string)
+      * get_header(url)
+
+  Available ivars:
+      * @header => get_header("https://derek.stride.host")
+      * @tree => parse(@header)
+
+  $ pp @tree.root_node
+
+MOTD
+
+pp @tree.root_node
 
 require "irb"
 IRB.start(__FILE__)

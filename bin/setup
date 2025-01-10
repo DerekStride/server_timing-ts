@@ -6,3 +6,14 @@ set -vx
 bundle install
 
 # Do any other automated setup that you need to do here
+
+rm -rf tmp/
+mkdir -p tmp/
+cd tmp/
+git clone --depth=1 https://github.com/DerekStride/tree-sitter-server_timing.git
+cd tree-sitter-server_timing
+
+cc -shared -fPIC -I./src src/parser.c -o server_timing.so
+cp server_timing.so ../../treesitter/
+cp server_timing.so ../../treesitter/server_timing.dylib
+cd ../..

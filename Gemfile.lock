@@ -7,8 +7,23 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    date (3.4.1)
+    debug (1.10.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
+    io-console (0.8.0)
+    irb (1.14.3)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
     oppen (0.9.8)
+    psych (5.2.2)
+      date
+      stringio
     rake (13.2.1)
+    rdoc (6.10.0)
+      psych (>= 4.0.0)
+    reline (0.6.0)
+      io-console (~> 0.5)
     ruby_tree_sitter (1.11.1)
       oppen (= 0.9.8)
       sorbet-runtime
@@ -50,6 +65,7 @@ GEM
       sorbet-runtime
       zeitwerk
     sorbet-runtime (0.5.11746)
+    stringio (3.1.2)
     zeitwerk (2.7.1)
 
 PLATFORMS
@@ -65,6 +81,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  debug
   rake (~> 13.0)
   server_timing-ts!
 

@@ -38,7 +38,7 @@ module ServerTiming
       (timing_metric
         name: (token) @name
         duration: (duration value: (number) @duration)?
-        description: (description value: (string) @description)?)
+        description: (description value: [(string) (token)] @description)?)
     QUERY
       name = match.fetch("name").text
       duration = match["duration"]&.text&.to_f

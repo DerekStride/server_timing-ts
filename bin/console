@@ -11,16 +11,19 @@ include ServerTiming
 
 @header = get_header("https://derek.stride.host")
 @tree = parse(@header)
+@timings = extract(@tree)
 
 puts <<~MOTD
   Welcome to the ServerTiming console!
   Available Methods:
       * parse(string)
       * get_header(url)
+      * extract(tree)
 
   Available ivars:
       * @header => get_header("https://derek.stride.host")
       * @tree => parse(@header)
+      * @timings => extract(@tree)
 
   $ pp @tree.root_node
 

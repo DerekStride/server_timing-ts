@@ -22,12 +22,7 @@ module ServerTiming
   def parse(source) = parser.parse_string(source)
 
   def get_header(url)
-    uri = URI(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = uri.scheme == "https"
-    req = Net::HTTP::Head.new(uri)
-    res = http.request(req)
-    header = res["Server-Timing"]
+    header = Net::HTTP.get_response(URI(url)).[]("Server-Timing")
     raise ServerTimingHeaderMissing if header.nil?
     header
   end

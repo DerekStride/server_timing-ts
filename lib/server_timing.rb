@@ -3,6 +3,7 @@
 require "tree_stand"
 
 require "server_timing/version"
+require "server_timing/handwritten"
 
 module ServerTiming
   class Error < StandardError; end

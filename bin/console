@@ -17,8 +17,9 @@ puts <<~MOTD
   Welcome to the ServerTiming console!
   Available Methods:
       * get_header(url)
-      * parse(string)
+      * parse(header)
       * extract(tree)
+      * ServerTiming::Handwritten.extract(header)
 
   Available ivars:
       * @header => get_header("https://derek.stride.host")

@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+
+require "benchmark/ips"
+require "debug"
+require "net/http"
+require "server_timing"
+
+HEADER = 'processing;dur=14;desc="gc:1", db;dur=2, db_async;dur=2.121, asn;desc="13335", edge;desc="YUL", country;desc="CA", theme;desc="124566044728", pageType;desc="index", servedBy;desc="4vxz", requestID;desc="1e5f882e-7001-46af-8651-c98531b70e0c-1736536608", cfRequestDuration;dur=80.999851'
+
+class Generated
+  extend ServerTiming
+end
+
+Benchmark.ips do |x|
+  x.config(time: 5, warmup: 2)
+
+  x.report("generated") do
+    Generated.extract(Generated.parse(HEADER))
+  end
+
+  x.report("handwritten") do
+    ServerTiming::Handwritten.extract(HEADER)
+  end
+end
